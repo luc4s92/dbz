@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "dbz";
+    src: url("/fonts/dbz.woff2") format("woff2"),
+      url("/fonts/dbz.woff") format("woff");
+  }
+}
