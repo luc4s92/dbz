@@ -1,13 +1,13 @@
 ---
 // Props
-const { title, src, description } = Astro.props;
+const { title, src, description, style } = Astro.props;
 ---
 
 <div class="relative w-full h-full">
   <img
     src={src}
     alt={title}
-    class="absolute inset-0 h-full w-full object-contain object-center drop-shadow-[0_10px_15px_rgba(255,215,0,0.7)]"
+    class={`absolute inset-0 h-full w-full  object-center ${style}`}
   />
   <div
     class="relative z-10 flex h-full flex-col justify-between p-5 text-blue-50"

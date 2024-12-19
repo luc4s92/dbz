@@ -36,6 +36,7 @@ export default {
           100: "#80C1FF", // Azul claro, como el aura de transformación.
           200: "#3399FF", // Azul vibrante, representando el cabello de Super Saiyan Blue.
           300: "#0073E6", // Azul profundo, energía en su máxima expresión.
+          400: "#0A58CA",
         },
       },
     },

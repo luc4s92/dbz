@@ -2,6 +2,69 @@
 // Importaciones
 import BentoCardImg from "./BentoCardImg.astro";
 import BentoTilt from "./BentoTilt";
+
+const characters = {
+  goku: {
+    title: "Techniques",
+    images: [
+      { src: "./img/feat/goku-skills-1.jpeg", alt: "Goku Feature" },
+      {
+        src: "./img/feat/goku-skills-2.jpg",
+        title: "Broli",
+        description: "An anime and gaming-inspired NFT collection.",
+        isComingSoon: true,
+      },
+      {
+        src: "./img/feat/goku-skills-3.jpg",
+        title: "Saiyan Power",
+        description: "An anime and gaming-inspired NFT collection.",
+        isComingSoon: true,
+      },
+      {
+        src: "./img/feat/goku-skills-4.gif",
+        title: "Saiyan Power",
+        description: "An anime and gaming-inspired NFT collection.",
+        isComingSoon: true,
+      },
+      {
+        src: "./img/feat/goku-skills-5.jpg",
+        title: "Saiyan Power",
+        description: "An anime and gaming-inspired NFT collection.",
+        isComingSoon: true,
+      },
+    ],
+  },
+  vegeta: {
+    title: "Vegeta's Skills",
+    images: [
+      { src: "./img/feat/vegeta-skills-1.jpeg", alt: "Vegeta Feature" },
+      {
+        src: "./img/feat/vegeta-skills-2.jpg",
+        title: "Pride",
+        description: "The prince of all Saiyans.",
+        isComingSoon: true,
+      },
+      {
+        src: "./img/feat/vegeta-skills-3.jpg",
+        title: "Saiyan Elite",
+        description: "Master of Galick Gun.",
+        isComingSoon: true,
+      },
+      {
+        src: "./img/feat/vegeta-skills-4.gif",
+        title: "Final Flash",
+        description: "Unleashing ultimate power.",
+        isComingSoon: true,
+      },
+      {
+        src: "./img/feat/vegeta-skills-5.jpg",
+        title: "Ultra Ego",
+        description: "Surpassing limits.",
+        isComingSoon: true,
+      },
+    ],
+  },
+};
 ---
 
 <section class="bg-black pb-52">
@@ -42,6 +105,7 @@ import BentoTilt from "./BentoTilt";
         class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
       >
         <BentoCardImg
+          style="object-contain"
           src="./img/characters/goku.png"
           title="Broli"
           description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
@@ -54,6 +118,7 @@ import BentoTilt from "./BentoTilt";
         class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
       >
         <BentoCardImg
+          style="object-contain"
           src="./img/characters/vegeta-2.png"
           title="Saiyan Power"
           description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
@@ -64,6 +129,7 @@ import BentoTilt from "./BentoTilt";
         class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
       >
         <BentoCardImg
+          style="object-contain"
           src="./img/characters/gohan-3.webp"
           title="Saiyan Power"
           description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
@@ -74,31 +140,14 @@ import BentoTilt from "./BentoTilt";
         class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
       >
         <BentoCardImg
+          style="object-contain"
           src="./img/characters/trunks.png"
           title="Saiyan Power"
           description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
           isComingSoon
         />
       </div>
-
-      <!-- Texto Extra -->
-      <!-- <div
-        class="flex min-h-[20rem] flex-col justify-between bg-violet-300 p-5"
-      >
-        <h1 class="bento-title special-font text-black">
-          M<b>o</b>re co<b>m</b>ing s<b>o</b>on.
-        </h1>
-      </div>
-
-      
-      <div class="min-h-[20rem] overflow-hidden">
-        <video
-          src="./videos/feature-5.mp4"
-          loop
-          muted
-          autoplay
-          class="h-full w-full object-cover"></video>
-      </div> -->
+      <a href="/saiyans/goku" class="text-white">hola</a>
     </div>
   </div>
 </section>
