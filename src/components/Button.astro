@@ -1,0 +1,18 @@
+---
+const { href, btn } = Astro.props;
+---
+
+<div class="flex justify-center">
+  <a
+    id=""
+    href={href}
+    class="btn-transformacion w-full flex justify-center transform-button bg-gradient-to-r from-yellow-300 to-orange-300 text-black py-5 px-16 rounded-lg font-dbz2 text-xl tracking-[0.4rem] uppercase relative overflow-hidden shadow-lg group"
+  >
+    {btn}
+    <div
+      class="group-hover:aura absolute inset-0 rounded-lg bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 group-hover:opacity-100"
+    >
+    </div>
+  </a>
+</div>
+<script></script>

@@ -1,0 +1,29 @@
+---
+import Button from "./Button.astro";
+
+// Props
+const { title, src, description, style, btn, href } = Astro.props;
+---
+
+<div class="relative w-full h-full">
+  <img
+    src={src}
+    alt={title}
+    class={`absolute inset-0 h-full w-full  object-center ${style}`}
+  />
+  <div
+    class="relative z-10 flex h-full flex-col justify-between p-5 text-yellow-200"
+  >
+    <div>
+      <h2 class="text-5xl font-dbz">{title}</h2>
+      {
+        description && (
+          <p class="mt-3 max-w-64 text-xs md:text-base">{description}</p>
+        )
+      }
+    </div>
+    <div>
+      {btn && <Button btn={btn} href={href} />}
+    </div>
+  </div>
+</div>
