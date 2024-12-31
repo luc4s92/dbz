@@ -1,0 +1,59 @@
+---
+import Title from "@/components/Title.astro";
+---
+
+<section
+  id="about"
+  class="min-h-screen w-full bg-orange-50 pt-1 overflow-x-hidden"
+>
+  <div class="relative mb-8 mt-20 flex flex-col items-center gap-5">
+    <p class="font-dbz2 text-sm uppercase md:text-[16px]">
+      Welcome to Kamehouse
+    </p>
+    <Title
+      title="Roshi's Place"
+      containerClass="text-6xl font-dbz text-orange-300"
+    />
+    <div class="about-subtext">
+      <!-- !cambiar descripcion -->
+      <p>The Game of Games begins—your life, now an epic MMORPG</p>
+      <p class="text-gray-500">
+        Zentry unites every player from countless games and platforms, both
+        digital and physical, into a unified Play Economy
+      </p>
+    </div>
+  </div>
+
+  <div class="h-dvh w-full" id="clip">
+    <div class="mask-clip-path about-image">
+      <img
+        src="./img/kamehouse.jpg"
+        alt="Background"
+        class="absolute left-0 top-0 size-full object-cover"
+      />
+    </div>
+  </div>
+</section>
+<script>
+  import gsap from "gsap";
+
+  import { ScrollTrigger } from "gsap/all";
+
+  gsap.registerPlugin(ScrollTrigger);
+  const clipAnimation = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#clip",
+      start: "center center",
+      end: "+=800 center",
+      scrub: 0.5,
+      pin: true,
+      pinSpacing: true,
+    },
+  });
+
+  clipAnimation.to(".mask-clip-path", {
+    width: "100vw",
+    height: "100vh",
+    borderRadius: 0,
+  });
+</script>
