@@ -1,0 +1,75 @@
+---
+import BentoCardImg from "@/components/BentoCardImg.astro";
+
+const { images } = Astro.props;
+---
+
+<section class="bg-black pb-52">
+  <div class="container mx-auto px-3 md:px-10">
+    <!-- Encabezado -->
+    <h2 class="font-dbz text-orange-100 pb-20 text-center text-8xl">
+      Techniques
+    </h2>
+    <!-- Primera Card -->
+    <div
+      class="relative mb-7 h-[50vh] w-full overflow-hidden rounded-md border-2 border-yellow-300 md:h-[45vh]"
+    >
+      <img
+        src={images.skill1.src}
+        alt="Saiyans Feature"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
+
+    <!-- Grid Responsive -->
+    <div class="grid grid-cols-1 gap-7 md:grid-cols-2 md:grid-rows-3">
+      <!-- Card 1 -->
+      <div
+        class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md w-full border-2 border-yellow-300"
+      >
+        <BentoCardImg
+          style="object-cover"
+          src={images.skill2.src}
+          title="Broli"
+          description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
+          isComingSoon
+        />
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
+      >
+        <BentoCardImg
+          style="object-cover"
+          src={images.skill3.src}
+          title="Saiyan Power"
+          description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
+          isComingSoon
+        />
+      </div>
+      <div
+        class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
+      >
+        <BentoCardImg
+          style="object-cover"
+          src={images.skill4.src}
+          title="Saiyan Power"
+          description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
+          isComingSoon
+        />
+      </div>
+      <div
+        class="row-span-1 min-h-[28rem] md:row-span-2 md:min-h-[40rem] rounded-md border-2 border-yellow-300"
+      >
+        <BentoCardImg
+          style="object-cover"
+          src={images.skill5.src}
+          title="Saiyan Power"
+          description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
+          isComingSoon
+        />
+      </div>
+    </div>
+  </div>
+</section>

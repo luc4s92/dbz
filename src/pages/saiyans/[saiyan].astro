@@ -1,0 +1,110 @@
+---
+import Character from "@/components/Character.astro";
+import Skills from "@/components/Skills.astro";
+import Layout from "@/layouts/Layout.astro";
+
+// Datos de ejemplo de los personajes
+const characters = {
+  goku: {
+    name: "Kakaroto",
+    subtitle: "The Warrior",
+    videos: {
+      vid1: "/videos/feat-goku-2.mp4",
+      vid2: "/videos/feat-goku.mp4",
+      vid3: "/videos/feat-goku-3.mp4",
+      vid4: "/videos/feat-goku-4.mp4",
+      vid5: "/videos/feat-goku-5.mp4",
+      vid6: "/videos/feat-goku-6.mp4",
+    },
+    images: {
+      skill1: {
+        src: "/img/feat/goku-skills-1.jpeg",
+        alt: "Goku Feature",
+      },
+      skill2: {
+        src: "/img/feat/goku-skills-2.jpg",
+        alt: "Goku Feature",
+      },
+      skill3: {
+        src: "/img/feat/goku-skills-3.jpg",
+        alt: "Goku Feature",
+      },
+      skill4: {
+        src: "/img/feat/goku-skills-4.gif",
+        alt: "Goku Feature",
+      },
+      skill5: {
+        src: "/img/feat/goku-skills-5.jpg",
+        alt: "Goku Feature",
+      },
+    },
+    // } [
+    //   { src: "/img/feat/goku-skills-1.jpeg", alt: "Goku Feature" },
+    //   {
+    //     src: "/img/feat/goku-skills-2.jpg",
+    //     title: "Broli",
+    //     description: "An anime and gaming-inspired NFT collection.",
+    //   },
+    // ],
+  },
+  vegeta: {
+    name: "Vegeta",
+    subtitle: "The Prince",
+    videos: {
+      vid1: "/videos/feat-vegeta.webm",
+      vid2: "/videos/feat-vegeta-2.mp4",
+      vid3: "/videos/feat-vegeta-3.mp4",
+      vid4: "/videos/feat-vegeta-4.mp4",
+      vid5: "/videos/feat-vegeta-5.mp4",
+      vid6: "/videos/feat-vegeta-6.mp4",
+    },
+    images: {
+      skill1: {
+        src: "/img/feat/vegeta-skills-1.jpg",
+        alt: "Goku Feature",
+      },
+      skill2: {
+        src: "/img/feat/vegeta-skills-2.jpg",
+        alt: "Goku Feature",
+      },
+      skill3: {
+        src: "/img/feat/vegeta-skills-3.jpg",
+        alt: "Goku Feature",
+      },
+      skill4: {
+        src: "/img/feat/vegeta-skills-4.gif",
+        alt: "Goku Feature",
+      },
+      skill5: {
+        src: "/img/feat/vegeta-skills-5.jpg",
+        alt: "Goku Feature",
+      },
+    },
+  },
+};
+
+// Obtener el parámetro dinámico de la URL
+const { saiyan } = Astro.params; // Debe coincidir con el nombre del archivo [saiyan].astro
+
+// Buscar el personaje
+const selectedCharacter = characters[saiyan];
+
+// Manejo de error si el personaje no existe
+if (!selectedCharacter) {
+  throw new Error(`Character "${saiyan}" not found`);
+}
+
+// Función getStaticPaths: genera rutas estáticas
+export async function getStaticPaths() {
+  return [{ params: { saiyan: "goku" } }, { params: { saiyan: "vegeta" } }];
+}
+---
+
+<Layout>
+  <Character
+    name={selectedCharacter.name}
+    subtitle={selectedCharacter.subtitle}
+    videos={selectedCharacter.videos}
+  />
+  <Skills images={selectedCharacter.images} />
+</Layout>

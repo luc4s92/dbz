@@ -1,0 +1,61 @@
+---
+import BentoCard from "./BentoCard.astro";
+
+const { name, videos, subtitle } = Astro.props;
+---
+
+<section class="bg-black pb-52">
+  <div class="container mx-auto px-3 md:px-10">
+    <div class="px-5 py-32">
+      <h2 class="font-dbz font-bold text-8xl text-orange-100 text-center">
+        {name}
+      </h2>
+      <h4 class="text-center text-xl text-orange-50 opacity-50">
+        [ {subtitle} ]
+      </h4>
+    </div>
+
+    <div
+      class="border-yellow-200 border-2 relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]"
+    >
+      <BentoCard src={videos.vid1} description="" isComingSoon />
+    </div>
+
+    <div class="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
+      <div
+        class="row-span-1 md:col-span-1 md:row-span-2 border-yellow-200 border-2 rounded-md overflow-hidden"
+      >
+        <BentoCard src={videos.vid2} description="" isComingSoon />
+      </div>
+
+      <div
+        class="row-span-1 ms-32 md:col-span-1 md:ms-0 border-yellow-200 border-2 rounded-md overflow-hidden"
+      >
+        <BentoCard src={videos.vid3} description="" isComingSoon />
+      </div>
+
+      <div
+        class="me-14 md:col-span-1 md:me-0 border-yellow-200 border-2 rounded-md overflow-hidden"
+      >
+        <BentoCard src={videos.vid4} description="" isComingSoon />
+      </div>
+
+      <div class="2 border-yellow-200 border-2 rounded-md overflow-hidden">
+        <video
+          src={videos.vid5}
+          loop
+          muted
+          autoplay
+          class="size-full object-cover object-center"></video>
+      </div>
+      <div class="border-yellow-200 border-2 rounded-md overflow-hidden">
+        <video
+          src={videos.vid6}
+          loop
+          muted
+          autoplay
+          class="size-full object-cover object-center"></video>
+      </div>
+    </div>
+  </div>
+</section>
