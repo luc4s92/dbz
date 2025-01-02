@@ -1,0 +1,184 @@
+<section class="relative h-screen">
+  <div
+    id="genki-dama-container"
+    class="w-full overflow-hidden pb-[40vh] sticky"
+  >
+    <!-- Imagen de Goku -->
+    <img
+      id="goku-image"
+      src="/img/effects/img/goku-genki.png"
+      alt="Goku levantando la Genki Dama"
+      class="goku-genkidama absolute top-[28rem] left-1/2 transform -translate-x-1/2 h-auto max-h-[40vh] object-contain z-10"
+    />
+  </div>
+</section>
+
+<script>
+  import * as THREE from "three";
+  import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+  import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+  import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("load", init);
+
+  function init() {
+    const container = document.getElementById("genki-dama-container");
+
+    // Crear el renderizador
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor(new THREE.Color("rgb(0, 0, 0)")); // Fondo inicial negro
+    container.appendChild(renderer.domElement);
+
+    // Crear la escena
+    const scene = new THREE.Scene();
+
+    // Crear la cámara
+    const camera = new THREE.PerspectiveCamera(
+      40,
+      container.offsetWidth / container.offsetHeight
+    );
+    camera.position.set(0, 0, 500);
+
+    // Cargar la textura
+    const textureLoader = new THREE.TextureLoader();
+    const genkiTexture = textureLoader.load("/img/effects/genki.png");
+
+    // Crear la geometría
+    const geometry = new THREE.SphereGeometry(100, 30, 30);
+
+    // Crear el material
+    const material = new THREE.MeshStandardMaterial({
+      map: genkiTexture,
+      emissive: new THREE.Color("rgb(0, 191, 255)"),
+      emissiveIntensity: 0.8,
+    });
+
+    // Crear el mesh (esfera)
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.scale.set(1, 1, 1);
+    mesh.position.set(0, 200, 0);
+    scene.add(mesh);
+
+    // Crear la luz ambiental
+    const ambient = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(ambient);
+
+    // Crear luz direccional
+    const directional = new THREE.DirectionalLight(0xffffff, 1);
+    directional.position.set(1, 1, 1);
+    scene.add(directional);
+
+    // Configuración del postprocesado para el efecto Bloom
+    const renderScene = new RenderPass(scene, camera);
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(container.offsetWidth, container.offsetHeight),
+      1.5,
+      0.4,
+      0.85
+    );
+    bloomPass.threshold = 0;
+    bloomPass.strength = 2;
+    bloomPass.radius = 0;
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(renderScene);
+    composer.addPass(bloomPass);
+
+    function render() {
+      mesh.rotation.x += 0.005;
+      mesh.rotation.y += 0.005;
+
+      composer.render();
+      requestAnimationFrame(render);
+    }
+
+    // Ajustar el tamaño en el cambio de ventana
+    function onResize() {
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(container.offsetWidth, container.offsetHeight);
+      camera.aspect = container.offsetWidth / container.offsetHeight;
+      camera.updateProjectionMatrix();
+      composer.setSize(container.offsetWidth, container.offsetHeight);
+    }
+
+    window.addEventListener("resize", onResize);
+    onResize();
+
+    render();
+
+    // Animación de la esfera al hacer scroll
+    gsap.to(mesh.scale, {
+      x: 8,
+      y: 8,
+      z: 8,
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        // onUpdate: (self) => {
+        //   const gokuY = 200 - self.progress * 600;
+        //   gokuImage.style.transform = `translate(-50%, ${gokuY}px)`;
+        //   gokuImage.style.opacity = (1 - self.progress).toString();
+        // },
+        // onLeave: () => {
+        //   mesh.visible = false;
+
+        //   container.style.backgroundColor = "white";
+        //   renderer.setClearColor(new THREE.Color("rgb(255, 255, 255)")); // Fondo blanco
+        // },
+        // onEnterBack: () => {
+        //   mesh.visible = true;
+
+        //   container.style.backgroundColor = "black";
+        //   renderer.setClearColor(new THREE.Color("rgb(0, 0, 0)")); // Fondo negro
+        // },
+      },
+    });
+  }
+</script>
+
+<style>
+  #genki-dama-container {
+    perspective: 1000px;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  canvas {
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(0, 191, 255, 0.8);
+  }
+
+  .goku-genkidama {
+    z-index: 1; /* Para que el aura quede detrás */
+    filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.8))
+      drop-shadow(0 0 40px rgba(135, 206, 250, 0.6))
+      drop-shadow(0 0 60px rgba(0, 255, 255, 0.4));
+    animation: pulsate 1.5s infinite ease-in-out;
+  }
+
+  /* Animación para simular el aura pulsante */
+  @keyframes pulsate {
+    0% {
+      filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.8))
+        drop-shadow(0 0 40px rgba(135, 206, 250, 0.6))
+        drop-shadow(0 0 60px rgba(0, 255, 255, 0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.9))
+        drop-shadow(0 0 50px rgba(135, 206, 250, 0.7))
+        drop-shadow(0 0 70px rgba(0, 255, 255, 0.5));
+    }
+    100% {
+      filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.8))
+        drop-shadow(0 0 40px rgba(135, 206, 250, 0.6))
+        drop-shadow(0 0 60px rgba(0, 255, 255, 0.4));
+    }
+  }
+</style>
