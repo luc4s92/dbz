@@ -1,0 +1,79 @@
+---
+// Este componente no necesita React ni useState, solo JS puro con GSAP.
+---
+
+<style>
+  .button-container {
+    display: inline-block;
+    position: relative;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #f3ec78, #af4261);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .liquid {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+</style>
+
+<button class="button-container">
+  Hover over me
+  <div class="liquid"></div>
+</button>
+
+<script type="module">
+  import gsap from "https://cdn.skypack.dev/gsap";
+
+  // Seleccionamos los elementos necesarios
+  const liquid = document.querySelector(".liquid");
+  const button = document.querySelector(".button-container");
+
+  let mouseX = 0,
+    mouseY = 0;
+
+  // Función para mover el efecto líquido
+  function moveLiquid(event) {
+    const rect = button.getBoundingClientRect();
+    mouseX = event.clientX - rect.left;
+    mouseY = event.clientY - rect.top;
+
+    // Animamos el círculo con GSAP
+    gsap.to(liquid, {
+      x: mouseX - liquid.offsetWidth / 2,
+      y: mouseY - liquid.offsetHeight / 2,
+      duration: 0.3,
+      ease: "power1.out",
+    });
+  }
+
+  // Función para mostrar el efecto cuando el mouse entra en el botón
+  function showLiquid() {
+    gsap.to(liquid, { scale: 1.5, opacity: 1, duration: 0.3 });
+  }
+
+  // Función para ocultar el efecto cuando el mouse sale del botón
+  function hideLiquid() {
+    gsap.to(liquid, { scale: 0, opacity: 0, duration: 0.3 });
+  }
+
+  // Eventos del botón
+  button.addEventListener("mousemove", moveLiquid);
+  button.addEventListener("mouseenter", showLiquid);
+  button.addEventListener("mouseleave", hideLiquid);
+</script>
