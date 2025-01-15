@@ -1,11 +1,16 @@
+---
+import { Image } from "astro:assets";
+import gokuBack from "../assets/img/hero-image-min.jpeg";
+---
+
 <main class="relative h-dvh w-full overflow-x-hidden">
   <div
     id="video-frame"
     class="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-orange-50"
   >
-    <img
+    <Image
       id="video-frame"
-      src="img/hero-image-min.jpeg"
+      src={gokuBack}
       class="absolute z-10 left-0 top-0 size-full object-cover object-center"
       alt="Goku picture from back"
     />

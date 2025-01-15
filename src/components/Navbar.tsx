@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 
 import { useWindowScroll } from "react-use";
 
-const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
+const navItems = ["About", "Vault", "Prologue", "About", "Contact"];
 
 const Navbar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -87,6 +87,13 @@ const Navbar = () => {
             <button
               className="ml-10 flex items-center space-x-0.5"
               onClick={toggleAudioIndicator}
+              aria-live="polite"
+              aria-label={
+                isIndicatorActive
+                  ? "Detener audio de fondo"
+                  : "Reproducir audio de fondo"
+              }
+              aria-pressed={isIndicatorActive}
             >
               <audio
                 ref={audioElementRef}
@@ -94,6 +101,11 @@ const Navbar = () => {
                 src="/audio/dbz.mp3"
                 loop
               />
+              <span className="sr-only">
+                {isIndicatorActive
+                  ? "El audio está reproduciéndose"
+                  : "El audio está detenido"}
+              </span>
               {[1, 2, 3, 4].map((bar) => (
                 <div
                   key={bar}

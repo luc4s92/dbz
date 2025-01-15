@@ -1,10 +1,12 @@
 ---
 import Title from "@/components/Title.astro";
+import { Image } from "astro:assets";
+import kameImg from "../assets/img/kamehouse-min.jpg";
 ---
 
 <section
   id="about"
-  class="min-h-screen w-full bg-orange-50/15 pt-1 overflow-x-hidden"
+  class="min-h-screen w-full bg-orange-50 pt-1 overflow-x-hidden"
 >
   <div class="relative mb-8 mt-20 flex flex-col items-center gap-5">
     <p class="font-dbz2 text-sm uppercase md:text-[16px]">
@@ -22,8 +24,8 @@ import Title from "@/components/Title.astro";
 
   <div class="h-dvh w-full" id="clip">
     <div class="mask-clip-path about-image">
-      <img
-        src="./img/kamehouse-min.jpg"
+      <Image
+        src={kameImg}
         alt="Background"
         class="absolute left-0 top-0 size-full object-cover"
       />
