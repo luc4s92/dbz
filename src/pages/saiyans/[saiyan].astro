@@ -100,7 +100,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout>
+<Layout title={selectedCharacter.name} description={selectedCharacter.subtitle}>
   <Character
     name={selectedCharacter.name}
     subtitle={selectedCharacter.subtitle}
